@@ -27,4 +27,4 @@ Escribe el siguiente programa:
 • El usuario Enrique puja de nuevo por esa subasta con 200 euros. Comprueba que no es aceptada, ya que la subasta ha sido cerrada.
 • Ejecuta la subasta.
 • Muestra por la consola los créditos de los tres usuarios. Observa que los saldos de Juan y Pedro han cambiado.
-• Para cada usuario, muestra por la consola las subastas de las que son propietarios, subastas ganadoras y pujas realizadas. Como información de la subasta muestra sólo el nombre del producto y como información de las pujas el producto subastado y la cantidad pujada.
+• Para cada usuario, muestra por la consola las subastas de las que son propietarios, subastas ganadoras y pujas realizadas. Como información de la subasta muestra sólo el nombre del producto y como información de las pujas el producto subastado y la cantidad pujada
