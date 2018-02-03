@@ -28,3 +28,4 @@ Escribe el siguiente programa:
 • Ejecuta la subasta.
 • Muestra por la consola los créditos de los tres usuarios. Observa que los saldos de Juan y Pedro han cambiado.
 • Para cada usuario, muestra por la consola las subastas de las que son propietarios, subastas ganadoras y pujas realizadas. Como información de la subasta muestra sólo el nombre del producto y como información de las pujas el producto subastado y la cantidad pujada
+.
