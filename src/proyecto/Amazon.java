@@ -11,38 +11,38 @@ public class Amazon {
 		HashMap<String, Integer> creditoUsuarios = new HashMap<String, Integer>();
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 		Usuario u1 = new Usuario("Juan", 100);
-		// Cambiar esto para que no tenga que poner el n˙mero de usuario
+		// Cambiar esto para que no tenga que poner el n√∫mero de usuario
 		JOptionPane.showMessageDialog(null,
-				"Bienvenido " + u1.getNombreUsuario() + ". Tu crÈdito es de " + u1.getCreditoUsuario() + "Ä");
+				"Bienvenido " + u1.getNombreUsuario() + ". Tu cr√©dito es de " + u1.getCreditoUsuario() + "‚Ç¨");
 		Usuario u2 = new Usuario("Pedro", 150);
-		// Cambiar esto para que no tenga que poner el n˙mero de usuario
+		// Cambiar esto para que no tenga que poner el n√∫mero de usuario
 		JOptionPane.showMessageDialog(null,
-				"Bienvenido " + u2.getNombreUsuario() + ". Tu crÈdito es de " + u2.getCreditoUsuario() + "Ä");
+				"Bienvenido " + u2.getNombreUsuario() + ". Tu cr√©dito es de " + u2.getCreditoUsuario() + "‚Ç¨");
 		Usuario u3 = new Usuario("Enrique", 300);
-		// Cambiar esto para que no tenga que poner el n˙mero de usuario
+		// Cambiar esto para que no tenga que poner el n√∫mero de usuario
 		JOptionPane.showMessageDialog(null,
-				"Bienvenido " + u3.getNombreUsuario() + ". Tu crÈdito es de " + u3.getCreditoUsuario() + "Ä");
-		Subasta s1 = new Subasta(u1, "TelÈfono MÛvil");
+				"Bienvenido " + u3.getNombreUsuario() + ". Tu cr√©dito es de " + u3.getCreditoUsuario() + "‚Ç¨");
+		Subasta s1 = new Subasta(u1, "Tel√©fono M√≥vil");
 		JOptionPane.showMessageDialog(null,
 				"El usuario " + u1.getNombreUsuario() + " ha abierto una subasta: " + s1.getDescripcionSubasta());
 		s1.realizarPuja(u2, 100);
 		JOptionPane.showMessageDialog(null, u2.getNombreUsuario() + ", confirmada tu puja por importe de "
-				+ s1.getPujasAceptadas().getFirst().getCantidadPujada() + "Ä");
+				+ s1.getPujasAceptadas().getFirst().getCantidadPujada() + "‚Ç¨");
 		JOptionPane.showMessageDialog(null, s1.pujaMayor());
 		s1.realizarPuja(u3, 50);
-		JOptionPane.showMessageDialog(null, u3.getNombreUsuario() + ", denegada tu puja por importe de 50 Ä");
+		JOptionPane.showMessageDialog(null, u3.getNombreUsuario() + ", denegada tu puja");
 		JOptionPane.showMessageDialog(null, s1.pujaMayor());
 		s1.cerrarSubasta();
 		s1.realizarPuja(u3, 200);
 		JOptionPane.showMessageDialog(null, s1.pujaMayor() + " Subasta abierta: " + s1.consultarSubastaAbierta());
 		JOptionPane.showMessageDialog(null,
-				u3.getNombreUsuario() + ", denegada tu puja por importe de 200 Ä. La subasta ha sido cerrada");
+				u3.getNombreUsuario() + ", denegada tu puja. La subasta ha sido cerrada");
 		JOptionPane.showMessageDialog(null, s1.ejecutarSubasta());
 		creditoUsuarios.put(u1.getNombreUsuario(), u1.getCreditoUsuario());// MODIFICAR ESTO PARA OBTENER DATOS CON FOR
 																			// EN ARRAY
 		creditoUsuarios.put(u2.getNombreUsuario(), u2.getCreditoUsuario());
 		creditoUsuarios.put(u3.getNombreUsuario(), u3.getCreditoUsuario());
-		creditoUsuarios.forEach((k, v) -> JOptionPane.showMessageDialog(null, "Usuario " + k + ", CrÈdito " + v));
+		creditoUsuarios.forEach((k, v) -> JOptionPane.showMessageDialog(null, "Usuario " + k + ", Cr√©dito " + v));
 		usuarios.add(u1);
 		usuarios.add(u2);
 		usuarios.add(u3);
