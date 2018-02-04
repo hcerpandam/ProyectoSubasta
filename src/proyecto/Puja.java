@@ -1,31 +1,40 @@
 package proyecto;
-
+/** 
+ * @author Hector Cervera, Carlos Sanchez y Daniel Valencia
+ * @version 1.0
+ * La puja sera considerada cuando sea "aceptada" y es realizada por un usuario con una cantidad de dinero.
+ * 
+ */
 public class Puja {
-
-	/*
-	 * 8.Una puja se caracteriza por la subasta a la que pertenece, la cantidad
-	 * pujada y el usuario que ha realizado la puja. Estas propiedades no varían una
-	 * vez que han sido establecidas.
+	/**
+	 * Declaramos variables de tipo final
 	 */
-
-	private final Subasta subastaEnCurso;
-	private final int cantidadPujada;
+	private final Subasta subastaAct;
+	private final int cantidadPuj;
 	private final Usuario pujador;
-
+	/**
+	* El constructor se hace con la subasta sobre la que puja, el usuario que realiza la puja y la cantidad con la que desea pujar
+	*/
 	Puja(Subasta currentAuction, int betQuantity, Usuario bidder) {
-		subastaEnCurso = currentAuction;
-		cantidadPujada = betQuantity;
+		subastaAct = currentAuction;
+		cantidadPuj = betQuantity;
 		pujador = bidder;
 	}
-
-	public Subasta getSubastaEnCurso() {
-		return subastaEnCurso;
+	/**
+	 * @return La subasta sobre la que se puja
+	 */
+	public Subasta getsubastaAct() {
+		return subastaAct;
 	}
-
-	public int getCantidadPujada() {
-		return cantidadPujada;
+	/**
+	 * @return La cantidad de credito del usuario que puja
+	 */
+	public int getcantidadPuj() {
+		return cantidadPuj;
 	}
-
+	/**
+	 * @return El usuario que puja
+	 */
 	public Usuario getPujador() {
 		return pujador;
 	}
