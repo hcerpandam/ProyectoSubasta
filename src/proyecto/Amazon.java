@@ -117,7 +117,7 @@ public class Amazon {
 				break;
 			case 2:
 				login=JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
-				loginNum=Integer.parseInt("Introduce tu crédito actual");
+				loginNum=Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
 				for (Usuario z:usuarios) {
 					if (z.getNombreU()==login && z.getCreditoU()==loginNum) {
 						u=z;
