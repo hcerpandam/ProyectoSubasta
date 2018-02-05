@@ -1,6 +1,7 @@
 package proyecto;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -118,10 +119,10 @@ public class Amazon {
 			case 2:
 				login=JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
 				loginNum=Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
-				for (Usuario z:usuarios) {
-					if (z.getNombreU()==login && z.getCreditoU()==loginNum) {
-						u=z;
-					}
+				for (HashMap.Entry<String, Integer> entry : creditoUs.entrySet()) {
+					if(entry.getKey()==login && entry.getValue()==loginNum) {
+						u(entry)=entry;
+					}  
 				}
 				datos=JOptionPane.showInputDialog("Introduce la descripción del producto que deseas subastar").toUpperCase();
 				Subasta s=new Subasta(u,datos);
