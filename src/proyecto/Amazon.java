@@ -63,11 +63,6 @@ public class Amazon {
 		 * Cerramos la subasta
 		 */
 		s1.cerrarSubasta();
-		for (Subasta s:subastasAbiertas) {
-			if(s.consultarSubastaAbierta()==false) {
-				subastasAbiertas.remove(s);
-			}
-		}
 		/**
 		 * El usuario Enrique realiza una puja y no es aceptada. Informamos de que la
 		 * subasta no está abierta y de que la puja ha sido rechazada
