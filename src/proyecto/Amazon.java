@@ -1,7 +1,7 @@
 package proyecto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
@@ -16,6 +16,7 @@ public class Amazon {
 		 */
 		HashMap<String, Integer> creditoUs = new HashMap<String, Integer>();
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
+		ArrayList<Subasta> subastasAbiertas=new ArrayList<Subasta>();
 
 		/**
 		 * Creamos tres usuarios e imprimimos su nombre y crédito inicial
@@ -35,6 +36,7 @@ public class Amazon {
 		 * El usuario Juan crea una subasta e informamos por pantalla
 		 */
 		Subasta s1 = new Subasta(u1, "TELÉFONO MÓVIL");
+		subastasAbiertas.add(s1);
 		JOptionPane.showMessageDialog(null,
 				"El usuario " + u1.getNombreU() + " ha abierto una subasta: " + s1.getdescrS());
 		/**
@@ -61,6 +63,11 @@ public class Amazon {
 		 * Cerramos la subasta
 		 */
 		s1.cerrarSubasta();
+		for (Subasta s:subastasAbiertas) {
+			if(s.consultarSubastaAbierta()==false) {
+				subastasAbiertas.remove(s);
+			}
+		}
 		/**
 		 * El usuario Enrique realiza una puja y no es aceptada. Informamos de que la
 		 * subasta no está abierta y de que la puja ha sido rechazada
@@ -91,23 +98,24 @@ public class Amazon {
 		/**
 		 * Informamos por consola del resumen de datos hasta el momento
 		 */
+
 		System.out.println("                                               RESUMEN                                 \n");
 		for (Usuario usuario : usuarios) {
 			System.out.print("[" + usuario.getNombreU() + "]" + usuario.getPujasASubastasP() + ";" + usuario.getPujasP()
 					+ ";" + usuario.getSubastasG() + ".\n");
 		}
 
-		int aux, datosNum,loginNum;
+		int aux, datosNum, loginNum;
 		String opcion, datos, login;
-		Usuario u = null;
+		Usuario u;
 		do {
-			
+
 			do {
 				opcion = JOptionPane.showInputDialog(
 						"¡Bienvenido!¿Qué deseas hacer?\n0.Salir del programa\n1.Registrarme como usuario\n2.Crear una subasta(*)\n3.Hacer una puja en una subasta(*)\n4.Consultar las subastas abiertas\n5.Consultar mis subastas(*)\n6.Consultar mis pujas aceptadas(*)\n7.Consultar mis subastas ganadas(*)\n*Solo usuarios registrados");
 				aux = Integer.parseInt(opcion);
 			} while (aux < 0 || aux > 7);
-			
+
 			switch (aux) {
 			case 1:
 				datos = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
@@ -117,20 +125,37 @@ public class Amazon {
 						+ "!\nTu crédito inicial es de " + u.getCreditoU() + " €");
 				break;
 			case 2:
-				login=JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
-				loginNum=Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
-				for (HashMap.Entry<String, Integer> entry : creditoUs.entrySet()) {
-					if(entry.getKey()==login && entry.getValue()==loginNum) {
-						u(entry)=entry;
-					}  
+				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
+				for (int i = 0; i < usuarios.size(); i++) {
+					if (login.equals(usuarios.get(i).getNombreU()) && loginNum == usuarios.get(i).getCreditoU()) {
+						datos = JOptionPane.showInputDialog("Introduce la descripción del producto que deseas subastar")
+								.toUpperCase();
+						Subasta s = new Subasta(usuarios.get(i), datos);
+						JOptionPane.showMessageDialog(null,
+								"El usuario " + u1.getNombreU() + " ha abierto una subasta: " + s.getdescrS());
+						i=usuarios.size();
+					} else {
+						i=usuarios.size();
+						JOptionPane.showMessageDialog(null,"Debes estar registrado");
+					}
 				}
-				datos=JOptionPane.showInputDialog("Introduce la descripción del producto que deseas subastar").toUpperCase();
-				Subasta s=new Subasta(u,datos);
-				JOptionPane.showMessageDialog(null, "Subasta creada por "+u.getNombreU());
+				break;
+			case 3:
+				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
+				
+				
 
 			}
-		
+
 		} while (aux != 0);
+		
+		for (Usuario usuario : usuarios) {
+			System.out.print("[" + usuario.getNombreU() + "]" + usuario.getPujasASubastasP() + ";" + usuario.getPujasP()
+					+ ";" + usuario.getSubastasG() + ".\n");
+		}
 
 	}
 }
+
