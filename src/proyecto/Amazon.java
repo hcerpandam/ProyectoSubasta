@@ -16,7 +16,7 @@ public class Amazon {
 		 */
 		HashMap<String, Integer> creditoUs = new HashMap<String, Integer>();
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
-		ArrayList<Subasta> subastasAbiertas=new ArrayList<Subasta>();
+		ArrayList<Subasta> subastasAbiertas = new ArrayList<Subasta>();
 
 		/**
 		 * Creamos tres usuarios e imprimimos su nombre y crédito inicial
@@ -74,6 +74,7 @@ public class Amazon {
 		 * Ejecutamos la subasta.Informamos
 		 */
 		JOptionPane.showMessageDialog(null, s1.ejecutarSubasta());
+		subastasAbiertas.remove(s1);
 		/**
 		 * Añadimos al HashMap los creditos de los usuarios
 		 */
@@ -101,7 +102,7 @@ public class Amazon {
 		}
 
 		int aux, datosNum, loginNum;
-		String opcion, datos, login;
+		String opcion, opcion2, datos, login;
 		Usuario u;
 		do {
 
@@ -114,12 +115,23 @@ public class Amazon {
 			switch (aux) {
 			case 1:
 				datos = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+				for (int i = 0; i < usuarios.size(); i++) {
+					while (datos.equals(usuarios.get(i).getNombreU())) {
+						datos = JOptionPane.showInputDialog("Nombre en uso. Introduzca otro nombre de usuario")
+								.toUpperCase();
+					}
+				}
 				datosNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito inicial"));
 				u = new Usuario(datos, datosNum);
 				JOptionPane.showMessageDialog(null, "¡Bienvenido a Amazon " + u.getNombreU()
 						+ "!\nTu crédito inicial es de " + u.getCreditoU() + " €");
+				usuarios.add(u);
 				break;
 			case 2:
+				if (!subastasAbiertas.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Ya hay una subasta creada");
+				}
+				else {
 				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
 				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
 				for (int i = 0; i < usuarios.size(); i++) {
@@ -129,28 +141,89 @@ public class Amazon {
 						Subasta s = new Subasta(usuarios.get(i), datos);
 						JOptionPane.showMessageDialog(null,
 								"El usuario " + u1.getNombreU() + " ha abierto una subasta: " + s.getdescrS());
-						i=usuarios.size();
-					} else {
-						i=usuarios.size();
-						JOptionPane.showMessageDialog(null,"Debes estar registrado");
+						subastasAbiertas.add(s);
+						usuarios.get(i).addPujasASubastasP(null, s);
+						i = usuarios.size();
+					} else if (i == usuarios.size()) {
+						i = usuarios.size();
+						JOptionPane.showMessageDialog(null, "Debes estar registrado");
+					}
+				}}
+				break;
+			case 3:
+				if (subastasAbiertas.isEmpty()) {
+					JOptionPane.showMessageDialog(null,"No hay subastas abiertas");
+				}
+				else {
+					login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+					loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
+					for (int i = 0; i < usuarios.size(); i++) {
+						if (login.equals(usuarios.get(i).getNombreU()) && loginNum == usuarios.get(i).getCreditoU()) {
+							opcion2=JOptionPane.showInputDialog("Introduce la cantidad que deseas pujar");
+							aux=Integer.parseInt(opcion2);
+							if(aux>usuarios.get(i).getCreditoU()) {
+								JOptionPane.showInputDialog("Puja rechazada");
+							}
+							else {
+							subastasAbiertas.get(0).realizarPuja(usuarios.get(i), aux);
+							}
+							
+						} else if (i == usuarios.size()) {
+							i = usuarios.size();
+							JOptionPane.showMessageDialog(null, "Debes estar registrado");
+						}
+					}
+					
+				}
+				
+				break;
+			case 4:
+				if (subastasAbiertas.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "No hay subastas abiertas");
+				} else {
+					for (Subasta s : subastasAbiertas) {
+						JOptionPane.showMessageDialog(null, s.getdescrS() + ", ");
 					}
 				}
 				break;
-			case 3:
+			case 5:
 				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
 				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
-				
-				
+				for (int i = 0; i < usuarios.size(); i++) {
+					if (login.equals(usuarios.get(i).getNombreU()) && loginNum == usuarios.get(i).getCreditoU()) {
+						usuarios.get(i).getPujasASubastasP();
+					} else if (i == usuarios.size()) {
+						i = usuarios.size();
+						JOptionPane.showMessageDialog(null, "Debes estar registrado");
+					}
+				}
+				break;
+			case 6:
+				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
+				for (int i = 0; i < usuarios.size(); i++) {
+					if (login.equals(usuarios.get(i).getNombreU()) && loginNum == usuarios.get(i).getCreditoU()) {
+						usuarios.get(i).getPujasP();
+					} else if (i == usuarios.size()) {
+						i = usuarios.size();
+						JOptionPane.showMessageDialog(null, "Debes estar registrado");
+					}
+				}
+				break;
+			case 7:
+				login = JOptionPane.showInputDialog("Introduce tu nombre y apellidos").toUpperCase();
+				loginNum = Integer.parseInt(JOptionPane.showInputDialog("Introduce tu crédito actual"));
+				for (int i = 0; i < usuarios.size(); i++) {
+					if (login.equals(usuarios.get(i).getNombreU()) && loginNum == usuarios.get(i).getCreditoU()) {
+						usuarios.get(i).getSubastasG();
+					} else if (i == usuarios.size()) {
+						i = usuarios.size();
+						JOptionPane.showMessageDialog(null, "Debes estar registrado");
+					}
+				}
+				break;
 
 			}
-
 		} while (aux != 0);
-		
-		for (Usuario usuario : usuarios) {
-			System.out.print("[" + usuario.getNombreU() + "]" + usuario.getPujasASubastasP() + ";" + usuario.getPujasP()
-					+ ";" + usuario.getSubastasG() + ".\n");
-		}
-
 	}
 }
-
