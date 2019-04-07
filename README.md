@@ -1,4 +1,4 @@
-# ProyectoSubasta
+# (Project)ProyectoSubasta
 
 Implementa un sistema de subastas donde los usuarios puedan pujar por un producto o servicio. A continuación, se describen los requisitos de la aplicación:
 
